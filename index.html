@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Segunda entrega de proyecto final</title>
+</head>
+<body>
+    <!-- HEADER - NAVEGADOR -->
+    <header>
+        <nav>
+            <div class="logo">
+                <span>LOGO</span>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="#">Inicio</a>
+                </li>
+                <li>
+                    <a href="#">Nosotros</a>
+                </li>
+                <li>
+                    <a href="#">Contacto</a>
+                </li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- VERIFICADOR DE EDAD -->
+    <div class="verificador">
+        <h1>Verifica tu edad</h1>
+        <div class="edadCont">
+            <label for="edad">Ingrese tu edad</label>
+            <input type="number" id="edad">
+            <button id="verificador">Verifique su Edad</button>
+        </div>
+        <p id="salidaVerificador"></p>
+    </div>
+    <hr>
+
+    <!-- Locales disponible Si o No -->
+    <div class="contenedorSiono">
+        <h2>¿Deseas saber locales disponibles? Responde con si o no</h2>
+        <input id="sionoInput" type="text" placeholder="si o no">
+        <button id="botonLocaldispo">Locales</button>
+        <button id="borrarLocales">Limpiar busqueda</button>
+        
+        <div id="localesDispo" class="localesSiono"></div>
+    </div>
+
+    <!-- Buscador -->
+    <h2>Buscar locales disponibles</h2>
+    <form id="registroLocales">
+        <input id="localCategoria" type="text" placeholder="Ingresa 'local' y su numero">
+        <input type="submit" id="addLocales">
+    </form>
+
+
+
+
+    <script src="js/main.js"></script>
+</body>
+</html>
