@@ -111,3 +111,15 @@ nav{
     border: solid 1px bisque;
     width: 100%;
 }
+
+#imagenesLocales{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+#contenedorImgs{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
