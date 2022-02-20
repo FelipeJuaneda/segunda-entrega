@@ -27,10 +27,12 @@ function verificarEdad(){
 
 //CLASE
 class Producto{
-    constructor(local, precio, espacio){
+    constructor(id,local, precio, espacio, img){
+        this.id=parseInt(id)
         this.local=local.toUpperCase();
         this.precio=precio;
         this.espacio=espacio;
+        this.img=img;
     }
     //metodos
     descuento(valor){
@@ -44,14 +46,13 @@ class Producto{
 
 //ARRAY
 const productos= [];
-productos.push(new Producto("Local 1", 5000,"3m x 4m"));
-productos.push(new Producto("Local 2", 7000, "5,5m x 5m"));
-productos.push(new Producto("Local 3", 8000, "6m x 6m"));
-productos.push(new Producto("Local 4", 10000, "8 x 7m"));
+productos.push(new Producto(01,"Local 1", 5000,"3m x 4m", "https://dummyimage.com/600x400/000/fff"));
+productos.push(new Producto(02,"Local 2", 7000, "5,5m x 5m", "https://dummyimage.com/500x300/000/fff"));
+productos.push(new Producto(03,"Local 3", 8000, "6m x 6m", "https://dummyimage.com/400x700/000/fff"));
+productos.push(new Producto(04,"Local 4", 10000, "8 x 7m", "https://dummyimage.com/300x300/000/fff"));
 
 
-//IF ELSE - PROMPT SI O NO
-
+//IF ELSE - SI O NO
 let botonDispo = document.getElementById("botonLocaldispo");
 botonDispo.addEventListener("click", localesSiono);
 function localesSiono() {
@@ -87,6 +88,13 @@ function localesSiono() {
             
     }
 }
+
+botonImg = document.getElementsByClassName("btnLocal");
+console.log(botonImg);
+for (const imagenes of botonImg){
+
+}
+
 
 function obtenerLocales() {
     if('ListaLocales' in localStorage){
