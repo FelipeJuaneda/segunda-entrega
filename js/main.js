@@ -9,7 +9,6 @@ const navSlide = () => {
 }
 navSlide();
 
-
 //Verificacion de edades
 const verificadorBoton = document.getElementById("verificador");
 verificadorBoton.addEventListener("click", verificarEdad);
@@ -18,12 +17,18 @@ function verificarEdad() {
     let edad = document.getElementById("edad").value;
     let salidaVeri = document.getElementById("salidaVerificador");
     if ((edad != "") && (edad >= 18)) {
-        salidaVeri.innerText = `Bienvenido! tu edad es de ${edad} años`
+        localStorage.setItem('EdadUsuario', JSON.stringify(edad));
+        salidaVeri.innerText = `Bienvenido! tu edad es de ${edad} años`;
     } else {
-        salidaVeri.innerText = `DATOS INCORRECTOS - No eres mayor de 18`
+        salidaVeri.innerText = `DATOS INCORRECTOS - No eres mayor de 18`;
+    }
+    obtenerEdad();
+}
+function obtenerEdad() {
+    if('EdadUsuario' in localStorage){
+        edad=localStorage.getItem('EdadUsuario');
     }
 }
-
 
 //CLASE
 class Producto {
