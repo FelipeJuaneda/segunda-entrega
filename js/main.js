@@ -27,12 +27,13 @@ function verificarEdad() {
 
 //CLASE
 class Producto {
-    constructor(id, local, precio, espacio, img) {
+    constructor(id, local, precio, espacio, img, tag) {
         this.id = parseInt(id)
         this.local = local.toUpperCase();
         this.precio = precio;
         this.espacio = espacio;
         this.img = img;
+        this.tag = tag;
     }
     //metodos
     descuento(valor) {
@@ -46,33 +47,32 @@ class Producto {
 
 //ARRAY
 const productos = [];
-productos.push(new Producto(01, "Local 1", 5000, "3m x 4m", "<img src='https://dummyimage.com/600x400/000/fff'>"));
-productos.push(new Producto(02, "Local 2", 7000, "5,5m x 5m", "<img src='https://dummyimage.com/500x300/000/fff'>"));
-productos.push(new Producto(03, "Local 3", 8000, "6m x 6m", "<img src='https://dummyimage.com/400x700/000/fff'>"));
-productos.push(new Producto(04, "Local 4", 10000, "8 x 7m", "<img src='https://dummyimage.com/300x300/000/fff'>"));
-
+productos.push(new Producto(01, "Local 1", 5000, "3m x 4m", "<img src='https://dummyimage.com/600x400/000/fff'>", "chico"));
+productos.push(new Producto(02, "Local 2", 7000, "5,5m x 5m", "<img src='https://dummyimage.com/500x300/000/fff'>", "chico"));
+productos.push(new Producto(03, "Local 3", 8000, "6m x 6m", "<img src='https://dummyimage.com/400x700/000/fff'>", "grande"));
+productos.push(new Producto(04, "Local 4", 10000, "8 x 7m", "<img src='https://dummyimage.com/300x300/000/fff'>", "grande"));
 
 //IF ELSE - SI O NO
 let botonDispo = document.getElementById("botonLocaldispo");
 botonDispo.addEventListener("click", localesSiono);
+
 function localesSiono() {
 
     //LIMPIADOR DE BUSQUEDA
     let sioNo = document.getElementById("sionoInput").value;
     let contenedorDispo = document.getElementById("localesDispo");
     let limpiador = document.getElementById("borrarLocales");
-    console.log(limpiador);
     limpiador.addEventListener('click', borradorLocales);
     function borradorLocales() {
-        contenedorDispo.remove();
-        contenedorImgs.remove();
-        imagenesLocales.remove();
+        contenedorDispo.innerHTML = "";
+        contenedorImgs.innerHTML = "";
+        imagenesLocales.innerHTML = "";
     }
 
     //CONTENEDOR LOCALES
     if (sioNo == "si") {
+        contenedorDispo.innerHTML = "";
         for (const producto of productos) {
-            botonDispo.disabled = true
             localStorage.setItem('ListaLocales', JSON.stringify(productos))
             let localesCont = document.createElement("div");
             localesCont.innerHTML = `<h2> ${producto.local} </h2> 
@@ -80,11 +80,13 @@ function localesSiono() {
                                     <h2> Y cuenta con un espacio de ${producto.espacio}</h2>
                                     <button id='${producto.id}' class= 'btnLocal'>Ver Local</button>`;
             contenedorDispo.append(localesCont);
+
         }
 
     } else if (sioNo == "SI") {
+        contenedorDispo.innerHTML = "";
         for (const producto of productos) {
-            botonDispo.disabled = true
+
             let localesCont = document.createElement("div");
             localesCont.innerHTML = `<h2> ${producto.local} </h2> 
                                     <h2> Precio: ${producto.precio} $ por mes</h2>
@@ -93,7 +95,7 @@ function localesSiono() {
             contenedorDispo.append(localesCont);
         }
     } else {
-        botonDispo.disabled = true
+        contenedorDispo.innerHTML = "";
         let localesCont = document.createElement("div");
         localesCont.innerHTML = `No hay problema!`;
         contenedorDispo.append(localesCont);
@@ -105,39 +107,38 @@ function localesSiono() {
     let imagenesLocales = document.getElementById('imagenesLocales')
     for (const boton of botonesLocales) {
         boton.addEventListener('click', function () {
-            console.log(this.img);
-            let seleccion = productos.find(producto=> producto.id==this.id);
-            imagenesLocales.innerHTML="El local seleccionado es "+ seleccion.local;
-            contenedorImgs.innerHTML= seleccion.img;
-            
+            let seleccion = productos.find(producto => producto.id == this.id);
+            imagenesLocales.innerHTML = "El local seleccionado es " + seleccion.local;
+            contenedorImgs.innerHTML = seleccion.img;
+
         })
     }
 }
 
-
-
-
-
-
-
-
-//BOTONES DE LOCALES
-/* let botonImg = document.getElementsByClassName('btnLocal');
-let contenedorImg = document.getElementsByClassName('contenedorImgs');
-console.log(botonImg.length);+
-console.log(contenedorImg);
-for (const boton of botonImg) {
-    boton.addEventListener('click', function () {
-        let imgs = document.createElement("div")
-        imgs.innerHTML = `<img scr=${producto.img}>'`;
-        contenedorImg.append(imgs)
-        
-        alert('id numero' + this.id);
-        let contenedorImgs = document.createElement("div");
-        contenedorImgs.innerHTML=`<img src="${this.img}">`;
-        document.body.append(con)
+//FILTRO LOCAL CHICO O GRANDE
+/* let filtroLocales = document.getElementById("filtroLocales");
+function filtroHTML(productos) {
+    filtroLocales.innerHTML = "Buscas local grande o chico?";
+    const porCategorias = productos.map(producto => producto.tag);
+    console.log(porCategorias);
+    crearSelect(porCategorias, "tag");
+}
+filtroHTML(productos);
+//SELECT
+function crearSelect(lista, clave) {
+    //Visual
+    let newSelect = document.createElement("select");
+    newSelect.innerHTML = "<option>" + lista.join('</option><option>') + "</option>";
+    filtroLocales.append(newSelect);
+    //Funcionalidad
+    newSelect.addEventListener('change', function () {
+        const filtrado = productos.filter(producto => producto[clave] == this.value);
+        botonDispo(filtrado);
     })
 } */
+
+
+
 
 
 function obtenerLocales() {
@@ -145,13 +146,3 @@ function obtenerLocales() {
         productos = localStorage.getItem('ListaLocales').split(',');
     }
 }
-
-
-//Busqueda
-/* let busquedaLocales = prompt("Ingrese 'Local y su Numero' para encontrar");
-let encontrado = productos.find(producto=> producto.local == busquedaLocales.toUpperCase());
-if (encontrado) {
-    alert("Local encontrado \n"+encontrado.local+ "\n Cuesta: " + encontrado.precio+ " pesos POR MES \n"+" Y cuenta con un espacio de " + encontrado.espacio)
-} else {
-    alert("No se encontro local")
-} */
