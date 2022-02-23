@@ -120,31 +120,6 @@ function localesSiono() {
     }
 }
 
-//FILTRO LOCAL CHICO O GRANDE
-/* let filtroLocales = document.getElementById("filtroLocales");
-function filtroHTML(productos) {
-    filtroLocales.innerHTML = "Buscas local grande o chico?";
-    const porCategorias = productos.map(producto => producto.tag);
-    console.log(porCategorias);
-    crearSelect(porCategorias, "tag");
-}
-filtroHTML(productos);
-//SELECT
-function crearSelect(lista, clave) {
-    //Visual
-    let newSelect = document.createElement("select");
-    newSelect.innerHTML = "<option>" + lista.join('</option><option>') + "</option>";
-    filtroLocales.append(newSelect);
-    //Funcionalidad
-    newSelect.addEventListener('change', function () {
-        const filtrado = productos.filter(producto => producto[clave] == this.value);
-        botonDispo(filtrado);
-    })
-} */
-
-
-
-
 
 function obtenerLocales() {
     if ('ListaLocales' in localStorage) {
