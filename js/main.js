@@ -25,9 +25,7 @@ function verificarEdad() {
     obtenerEdad();
 }
 function obtenerEdad() {
-    if('EdadUsuario' in localStorage){
-        edad=localStorage.getItem('EdadUsuario');
-    }
+    'EdadUsuario' in localStorage && edad.localStorage.getItem('EdadUsuario');
 }
 
 //CLASE
@@ -78,25 +76,25 @@ function localesSiono() {
     if (sioNo == "si") {
         contenedorDispo.innerHTML = "";
         for (const producto of productos) {
+            let { local, precio, espacio, id } = producto;
             localStorage.setItem('ListaLocales', JSON.stringify(productos))
             let localesCont = document.createElement("div");
-            localesCont.innerHTML = `<h2> ${producto.local} </h2> 
-                                    <h2> Precio: ${producto.precio} $ por mes</h2>
-                                    <h2> Y cuenta con un espacio de ${producto.espacio}</h2>
-                                    <button id='${producto.id}' class= 'btnLocal'>Ver Local</button>`;
+            localesCont.innerHTML = `<h2> ${local} </h2> 
+                                    <h2> Precio: ${precio} $ por mes</h2>
+                                    <h2> Y cuenta con un espacio de ${espacio}</h2>
+                                    <button id='${id}' class= 'btnLocal'>Ver Local</button>`;
             contenedorDispo.append(localesCont);
-
         }
-
     } else if (sioNo == "SI") {
         contenedorDispo.innerHTML = "";
         for (const producto of productos) {
-
+            let { local, precio, espacio, id } = producto;
+            localStorage.setItem('ListaLocales', JSON.stringify(productos))
             let localesCont = document.createElement("div");
-            localesCont.innerHTML = `<h2> ${producto.local} </h2> 
-                                    <h2> Precio: ${producto.precio} $ por mes</h2>
-                                    <h2> Y cuenta con un espacio de ${producto.espacio}</h2>
-                                    <button id='${producto.id}' class= 'btnLocal'>Ver Local</button>`;
+            localesCont.innerHTML = `<h2> ${local} </h2> 
+                                    <h2> Precio: ${precio} $ por mes</h2>
+                                    <h2> Y cuenta con un espacio de ${espacio}</h2>
+                                    <button id='${id}' class= 'btnLocal'>Ver Local</button>`;
             contenedorDispo.append(localesCont);
         }
     } else {
@@ -121,7 +119,5 @@ function localesSiono() {
 }
 
 function obtenerLocales() {
-    if ('ListaLocales' in localStorage) {
-        productos = localStorage.getItem('ListaLocales').split(',');
-    }
+    ('ListaLocales' in localStorage) && productos.localStorage.getItem('ListaLocales').split(',');
 }
