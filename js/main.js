@@ -120,7 +120,6 @@ function localesSiono() {
     }
 }
 
-
 function obtenerLocales() {
     if ('ListaLocales' in localStorage) {
         productos = localStorage.getItem('ListaLocales').split(',');
